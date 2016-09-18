@@ -1,0 +1,30 @@
+.centered {
+    width: 1117px;
+    margin: 20px auto;
+}
+
+.blog_item {
+    display: inline-block;
+    font-size: 12px;
+    margin-bottom: 30px;
+    padding: 0 15px;
+    vertical-align: top;
+    width: 100%;
+}
+
+.blog_item {
+    background: #fff none repeat scroll 0 0;
+    box-sizing: border-box;
+    margin-bottom: 37px !important;
+    margin-right: 39px;
+    padding: 22px !important;
+    position: relative !important;
+    top: 0;
+    transition: margin 0.3s ease 0s, top 0.3s ease 0s;
+    width: 343px !important;
+    background: #ddd;
+}
+
+.blog_item.right-side {
+    margin-right: 0 !important;
+}
