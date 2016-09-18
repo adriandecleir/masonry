@@ -1,58 +1,57 @@
-function apply_masonry() {
+(function ($) {
 
-    var columns = 3;
-    var items_per_page = 12;
-    var multiple;
-    var add_ons = 0;
-    var difference = 0;
-    var margin_top_for_row = 0;
-    var lowest_box = 0;
-    var top_of_pagination = 0;
-    var box_this_position = 0;
-    var box_outer_height = 0;
+    $.fn.apply_masonry = function (options) {
 
-    $('.blog_item').each(function () {
-        var id = $(this).attr('id');
-        var blog_item_id = id.substring('blog-id-'.length);
-        // ignore the top level
-        if (blog_item_id > columns) {
-            // get top point of current element
-            box_this_position = $('#blog-id-' + blog_item_id)[0].getBoundingClientRect().top - $('#blog-id-' + blog_item_id).parent()[0].getBoundingClientRect().top;
-            var box_above = blog_item_id - columns;
-            // get bottom of box above it
-            var box_above_position = $('#blog-id-' + box_above).outerHeight();
-            // new rules apply after the second row which is number of columns * 2
-            if (blog_item_id > columns * 2) {
-                var count = items_per_page - columns;
 
-                while (count >= columns * 2) {
-                    if (blog_item_id > count && blog_item_id <= count + columns) {
-
-                        multiple = (count / columns) - 1;
-
-                        while (multiple >= 1) {
-                            add_ons += 35 + $('#blog-id-' + (box_above - columns * multiple)).outerHeight();
-                            multiple--;
-                        }
-                        box_above_position = $('#blog-id-' + box_above).outerHeight() + add_ons;
-                        add_ons = 0;
-                    }
-                    count = count - columns;
-                }
-            }
-            difference = box_above_position - box_this_position + 35;
-
-            $(this).css('top', difference);
-
+        var difference;
+        var box_this_position;
+        var settings = {
+            'columns': 3,
+            'items_per_page': 12,
+            'multiple': 0,
+            'add_ons': 0,
+            'box_this_position': 0,
+            'bottom_margin': 35
         }
-    });
-}
 
-$(document).ready(function () {
-    setTimeout(function () {
+        if (typeof(options) == 'object') {
+            $.extend(settings, options);
+        }
 
-        apply_masonry();
+        $('.blog_item').each(function () {
+            var id = $(this).attr('id');
+            var blog_item_id = id.substring('blog-id-'.length);
+            // ignore the top level
+            if (blog_item_id > settings.columns) {
+                // get top point of current element
+                box_this_position = $('#blog-id-' + blog_item_id)[0].getBoundingClientRect().top - $('#blog-id-' + blog_item_id).parent()[0].getBoundingClientRect().top;
+                var box_above = blog_item_id - settings.columns;
+                // get bottom of box above it
+                var box_above_position = $('#blog-id-' + box_above).outerHeight();
+                // new rules apply after the second row which is number of settings.columns * 2
+                if (blog_item_id > settings.columns * 2) {
+                    var count = settings.items_per_page - settings.columns;
 
-    }, 400);
+                    while (count >= settings.columns * 2) {
+                        if (blog_item_id > count && blog_item_id <= count + settings.columns) {
 
-});
+                            settings.multiple = (count / settings.columns) - 1;
+
+                            while (settings.multiple >= 1) {
+                                settings.add_ons += settings.bottom_margin + $('#blog-id-' + (box_above - settings.columns * settings.multiple)).outerHeight();
+                                settings.multiple--;
+                            }
+                            box_above_position = $('#blog-id-' + box_above).outerHeight() + settings.add_ons;
+                            settings.add_ons = 0;
+                        }
+                        count = count - settings.columns;
+                    }
+                }
+                difference = box_above_position - box_this_position + settings.bottom_margin;
+
+                $(this).css('top', difference);
+
+            }
+        });
+    };
+})(jQuery);

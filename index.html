@@ -10,20 +10,37 @@
 <body>
 <section>
     <div class="centered">
-        <div class="blog_item" id="blog-id-1">testtesttest<br>testtesttest<br>testtesttest<br></div>
-        <div class="blog_item" id="blog-id-2">test</div>
-        <div class="blog_item right-side" id="blog-id-3">test</div>
-        <div class="blog_item" id="blog-id-4"></div>
-        <div class="blog_item" id="blog-id-5">testtesttest<br>testtesttest<br></div>
-        <div class="blog_item right-side" id="blog-id-6">testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br></div>
-        <div class="blog_item" id="blog-id-7"></div>
-        <div class="blog_item" id="blog-id-8"></div>
-        <div class="blog_item right-side" id="blog-id-9"></div>
-        <div class="blog_item" id="blog-id-10">testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br></div>
-        <div class="blog_item" id="blog-id-11"></div>
-        <div class="blog_item right-side" id="blog-id-12"></div>
+        <div class="blog-listing">
+            <div class="blog_item" id="blog-id-1">testtesttest<br>testtesttest<br>testtesttest<br></div>
+            <div class="blog_item" id="blog-id-2">test</div>
+            <div class="blog_item right-side" id="blog-id-3">test</div>
+            <div class="blog_item" id="blog-id-4"></div>
+            <div class="blog_item" id="blog-id-5">testtesttest<br>testtesttest<br></div>
+            <div class="blog_item right-side" id="blog-id-6">testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>
+            </div>
+            <div class="blog_item" id="blog-id-7"></div>
+            <div class="blog_item" id="blog-id-8"></div>
+            <div class="blog_item right-side" id="blog-id-9"></div>
+            <div class="blog_item" id="blog-id-10">testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>testtesttest<br>
+            </div>
+            <div class="blog_item" id="blog-id-11"></div>
+            <div class="blog_item right-side" id="blog-id-12"></div>
+        </div>
     </div>
 </section>
+<script>
 
+    $(document).ready(function () {
+        setTimeout(function () {
+
+            $('.blog-listing').apply_masonry({
+                'bottom_margin':35
+
+            });
+
+        }, 400);
+
+    });
+</script>
 </body>
 </html>
